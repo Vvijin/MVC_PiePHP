@@ -17,25 +17,25 @@ spl_autoload_register(function ($class) {
     $path_srcmodel = "./src/Model/";
 
     $class = explode("\\", $class);
-    // var_dump($class);
-    foreach ($class as $element) {
-        $class = $element . '.php';
-        var_dump($element);
-
-    if (file_exists($path_core . $class)) {
-        require $path_core . $class;
+    //var_dump($class);
+    foreach ($class as $key => $value) {
+    $file = $value . '.php';
+     //   var_dump($value);
+    }
+    if (file_exists($path_core . $file)) {
+        require $path_core . $file;
     }
 
-    if (file_exists($path_src . $class)) {
-        require $path_src . $class;
+    if (file_exists($path_src . $file)) {
+        require $path_src . $file;
     }
 
-    if (file_exists($path_srccontroller . $class)) {
-        require $path_srccontroller . $class;
+    if (file_exists($path_srccontroller . $file)) {
+        require $path_srccontroller . $file;
     }
 
-    if (file_exists($path_srcmodel . $class)) {
-        require $path_srcmodel . $class;
+    if (file_exists($path_srcmodel . $file)) {
+        require $path_srcmodel . $file;
     }
-    }
+    
 });

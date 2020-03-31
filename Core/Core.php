@@ -1,30 +1,11 @@
-<?php 
+<?php
 
-// namespace Core;
+namespace Core;
 
-// class Core
-//{
-    // public function run()
-    // {
-    //     $serveur = $_SERVER["REQUEST_URI"];
-    //     $arr = explode(DIRECTORY_SEPARATOR, $serveur);
-
-    //     $class = ucfirst($arr[2]) . "Controller";
-    //     $methode = $arr[3] . "Action";
-
-    //     echo "$class -> $methode<br>";
-
-    //     $controller = new $class();
-    //     $controller->$methode();
-    // }
-    
-//}
-
-
-namespace Core ;
 class Core
 {
-    public function run() {
+    public function run()
+    {
         include 'routes.php';
 
 
@@ -37,9 +18,28 @@ class Core
 
             $new_controller = new $controllerName;
             $new_controller->{$controller['action'] . 'Action'}();
-        }
-        else {
+        } else {
             echo "404";
         }
     }
 }
+
+// namespace Core;
+
+// class Core
+// {
+//     public function run()
+//     {
+//         $serveur = $_SERVER["REQUEST_URI"];
+//         $arr = explode(DIRECTORY_SEPARATOR, $serveur);
+
+//         $class = ucfirst($arr[2]) . "Controller";
+//         $methode = $arr[3] . "Action";
+
+//         echo "$class -> $methode<br>";
+
+//         $controller = new $class();
+//         $controller->$methode();
+//     }
+    
+// }
