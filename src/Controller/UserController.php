@@ -5,7 +5,8 @@ class UserController
 
     // public function indexAction()
     // {
-    //     $this->render("index");
+    // //     $this->render("index");
+    //     echo 'Salut';
     // }
 
     public function addAction()
@@ -15,6 +16,6 @@ class UserController
 
     public function errorAction()
     {
-        echo '404 NOT FOUND';
+        echo '404';
     }
 }

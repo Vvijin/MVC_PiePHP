@@ -14,7 +14,7 @@ class Router
             return self::$routes[$url];
         } 
         else {
-            return self::$routes['/error'];
+            return null;
         }
     }
 }
