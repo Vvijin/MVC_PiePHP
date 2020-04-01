@@ -3,11 +3,11 @@
 class UserController
 {
 
-    // public function indexAction()
-    // {
-    // //     $this->render("index");
-    //     echo 'Salut';
-    // }
+    public function indexAction()
+    {
+    //    $this->render("index");
+        echo 'Salut';
+    }
 
     public function addAction()
     {

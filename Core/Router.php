@@ -12,7 +12,7 @@ class Router
     {
         if (isset(self::$routes[$url])) {
             return self::$routes[$url];
-        } 
+        }
         else {
             return null;
         }

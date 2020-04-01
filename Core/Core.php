@@ -15,35 +15,36 @@ class Core
         $arr = explode(DIRECTORY_SEPARATOR, $serveur);
         $class = ucfirst($arr[2]) . "Controller";
         // var_dump($url);
-        if(isset($arr[3]))
-        {
-        $methode = $arr[3] . "Action";
+        if (isset($arr[3])) {
+            $methode = $arr[3] . "Action";
         }
-       
-        if($url = \Router::get('/'.$arr[2])) {
+
+        if ($controller) {
             $controllerName = ucfirst($controller['controller']) . 'Controller';
 
             $new_controller = new $controllerName;
-            $new_controller->{$controller['action'] .'Action'}();
+            $new_controller->{$controller['action'] . 'Action'}();
             // echo 'yoo';
-        }
-        
-        elseif (class_exists($class)){
+        } elseif (!isset($arr[3]) && class_exists($class)) {
+            $controller = new $class();
+            $controller->indexAction();
+        } elseif (class_exists($class)) {
+            
 
             $controller = new $class();
-            
-            if (method_exists($controller,$methode))
-            {
+
+            if (method_exists($controller, $methode)) {
                 $controller->$methode();
+            } 
+            else {
+                echo "404";
             }
-            
+
+        } 
+        else {
+            echo "404";
         }
-        
-        else 
-        {
-            echo "404 "; 
-        }
-        
+        // var_dump($arr[2]);
     }
 }
 
