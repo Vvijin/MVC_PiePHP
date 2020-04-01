@@ -1,6 +1,19 @@
-<?php 
+<?php
 
 class UserModel
 {
-    
+    private $email;
+    private $password;
+
+    public function __construct($email, $password)
+    {
+        $this->email = $email;
+        $this->password = $password;
+    }
+
+    public function save()
+    {
+        $sql = $this->db->prepare('INSERT INTO users (email, password) VALUES (?, ?)');
+        $sql->execute([$this->email, $this->password]);
+    }
 }

@@ -1,13 +1,12 @@
 <?php
 
-namespace Core;
-
+namespace Core ;
 class Core
 {
-    public function run()
+    public function run() 
     {
         include 'routes.php';
-
+        // echo CLASS . "[OK]" . PHP_EOL;
 
         $url = str_replace(BASE_URI, '', $_SERVER['REQUEST_URI']);
 
@@ -18,14 +17,15 @@ class Core
 
             $new_controller = new $controllerName;
             $new_controller->{$controller['action'] . 'Action'}();
-        } else {
+        }
+        else {
             echo "404";
         }
     }
 }
 
 // namespace Core;
-
+// use Router;
 // class Core
 // {
 //     public function run()

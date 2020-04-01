@@ -10,7 +10,7 @@ class UserController
 
     public function addAction()
     {
-        echo 'ajouté';
+        echo 'Ajouté';
     }
 
     public function errorAction()

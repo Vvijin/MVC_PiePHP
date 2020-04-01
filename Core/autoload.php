@@ -18,7 +18,7 @@ spl_autoload_register(function ($class) {
 
     $class = explode("\\", $class);
     //var_dump($class);
-    foreach ($class as $key => $value) {
+    foreach ($class as $value) {
     $file = $value . '.php';
      //   var_dump($value);
     }
