@@ -1,6 +1,6 @@
 <?php
 
-class UserModel
+class UserModel extends Entity
 {
     private $email;
     private $password;
@@ -17,3 +17,5 @@ class UserModel
         $sql->execute([$this->email, $this->password]);
     }
 }
+
+//$user = new UserModel();

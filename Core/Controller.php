@@ -1,6 +1,15 @@
 <!-- <?php 
+class Controller {
 
-function render($view, $scope = []) {
+    public $db;
+    protected static $_render;
+    public function __construct()
+    {
+        //$this->db = Database::getDatabase();
+    }
+
+
+    protected function render($view, $scope = []) {
     extract ($scope) ;
     $f = implode(DIRECTORY_SEPARATOR, [dirname( __DIR__ ), 'src ' , ' View ' , str_replace ('Controller ' , '', basename(get_class($this))) , $view ]) .'.php';
     if (file_exists($f)) {
@@ -11,4 +20,5 @@ function render($view, $scope = []) {
         include(implode(DIRECTORY_SEPARATOR, [dirname(__DIR__), 'src ', ' View ', ' index']) .'.php');
         self::$_render = ob_get_clean();
     }
+}
 }

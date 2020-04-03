@@ -18,4 +18,15 @@ class UserController
     {
         echo '404';
     }
+
+    public function registerAction()
+    {
+        $this->render('register');
+        if($_POST['email'] && $_POST['password'])
+        {
+            $user = new UserModel($_POST['email'], $_POST['password']);
+            $user->save();
+        }
+       
+    }
 }
