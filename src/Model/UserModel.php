@@ -18,4 +18,4 @@ class UserModel extends Entity
     }
 }
 
-//$user = new UserModel();
+$user = new UserModel();

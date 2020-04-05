@@ -5,7 +5,7 @@ class UserController
 
     public function indexAction()
     {
-    //    $this->render("index");
+    //$this->render("index");
         echo 'Salut';
     }
 
@@ -21,7 +21,7 @@ class UserController
 
     public function registerAction()
     {
-        $this->render('register');
+        //$this->render('register');
         if($_POST['email'] && $_POST['password'])
         {
             $user = new UserModel($_POST['email'], $_POST['password']);

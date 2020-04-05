@@ -5,7 +5,7 @@ class Controller {
     protected static $_render;
     public function __construct()
     {
-        //$this->db = Database::getDatabase();
+        $this->db = Database::getDatabase();
     }
 
 
