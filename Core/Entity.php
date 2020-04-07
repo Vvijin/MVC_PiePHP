@@ -1,17 +1,17 @@
 <?php 
 
 class Entity {
-    public function __construct($tab)
+    public function __construct($params)
     {
         $class =  get_class($this)."\n";
 
-        if($tab['id'])
+        if($params['id'])
         {
-            //comming soon ...
+           $class -> read();
         }
         else 
         {
-            //comming soon ...
+            $class -> params();
         }
         
     }
