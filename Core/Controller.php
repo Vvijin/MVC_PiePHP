@@ -1,7 +1,7 @@
 <!-- <?php 
 class Controller {
 
-    public $db;
+    public $bdd;
     protected static $_render;
     public function __construct()
     {

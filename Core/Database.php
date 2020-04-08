@@ -17,5 +17,5 @@ class bdd
         }
     }
 }
-$a = new bdd();
-$a->connexion();
+//$a = new bdd();
+//$a->connexion();

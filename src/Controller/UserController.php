@@ -22,10 +22,10 @@ class UserController
     public function registerAction()
     {
         //$this->render('register');
-        if($_POST['email'] && $_POST['password'])
+        if($_POST['col'] && $_POST['value_col'])
         {
-            $user = new UserModel($_POST['email'], $_POST['password']);
-            $user->save();
+            $user = new UserModel($_POST, 'users');
+            //$user->save();
         }
        
     }
