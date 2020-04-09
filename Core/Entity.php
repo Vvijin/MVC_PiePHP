@@ -1,18 +1,25 @@
 <?php 
 
-class Entity {
-    public function __construct($params)
-    {
-        $class =  get_class($this)."\n";
+class Entity 
+{
+    public $orm ;
+    public $table;
+    public $values;
 
-        if($params['id'])
+    public function __construct($table, $tab)
+    {
+        $this->orm = new ORM();
+        $this->table = $table;
+
+        if(is_array($tab))
         {
-           $class -> read();
+            foreach($tab as $key => $value)
+            {
+                $this->key = $value;
+            }
         }
-        else 
-        {
-            $class -> params();
-        }
-        
+
+        $this->values = $tab;
+
     }
 }

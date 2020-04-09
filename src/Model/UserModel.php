@@ -23,6 +23,6 @@
 class UserModel extends Entity
 {
     
-    //methode
+    
 }
 
