@@ -23,6 +23,5 @@
 class UserModel extends Entity
 {
     
-    
 }
 

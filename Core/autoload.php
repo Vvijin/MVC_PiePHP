@@ -37,5 +37,10 @@ spl_autoload_register(function ($class) {
     if (file_exists($path_srcmodel . $file)) {
         require $path_srcmodel . $file;
     }
+    // else {
+    //     require 'src/Flash/error.php';
+    //     $flash = new Error();
+    //     return false;
+    // }
     
 });

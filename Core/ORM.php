@@ -1,40 +1,54 @@
 <?php
 
-class ORM
+class ORM 
 {
     private $table;
     private $col;
     private $value_col;
 
+    
     public function __construct()
     {
         // $this->table = $table;
         // $this->col = $col;
         // $this->value_col = $value_col;
-        //$this->bdd = Database::connexion();
+        $this->bdd = Database::connect();
 
     }
 
-    public function create($table, $col, $value_col)
+    public function create($table, $fields)
     {
-        $sql = "INSERT INTO $table($col, $value_col) VALUES (?, ?)"; //cmt faire avec plusieurs values
+        //var_dump($fields);
+        $tab = [];
+        $col = [];
+        $values_col = [];
+        
+        foreach ($fields as $key => $value)
+        {
+            $tab[] = $key;
+            $col[] = '?';
+            $values_col[]= $value;
+        }
+
+        $tab_name = implode(',', $tab);
+        $col_name = implode(',', $col);
+        // var_dump($col_name, $tab_name);
+        $sql = "INSERT INTO $table ($tab_name) VALUES ($col_name)"; //cmt faire avec plusieurs values
         $execute_sql = $this->bdd->prepare($sql);
-        $execute_sql->bindParam('?', $col, PDO::PARAM_STR); // eviter bindparam pour chaque ?
-        $execute_sql->bindParam('?', $value_col, PDO::PARAM_STR);
-        $execute_sql->execute();
-        $id_user = $this->bdd->lastInsertId();
-        //$this->read($id_user);
-        //$this->read_all($id_user);
+        $execute_sql->execute($values_col);
+       // var_dump($execute_sql->execute([$values_col]));
+        $values_col = $this->bdd->lastInsertId();
+        // $this->read($table,$values_col);
+        // $this->read_all($table ,$values_col);
         $execute_sql->closeCursor();
-        return $id_user;
+       return $values_col;
     }
 
-    public function read($table, $col)
+    public function read($table, $id)
     {
-        $sql = "SELECT * FROM $table WHERE $col=?";
+        $sql = "SELECT * FROM $table WHERE id=?";
         $execute_sql = $this->bdd->prepare($sql);
-        $execute_sql->bindParam('?', $col, PDO::PARAM_INT);
-        $execute_sql->execute();
+        $execute_sql->execute([$id]);
         $result = $execute_sql->fetchAll(PDO::FETCH_ASSOC);
         foreach ($result as $value) {
            return $value;
@@ -42,12 +56,11 @@ class ORM
         $execute_sql->closeCursor();
     }
 
-    public function read_all($table, $col)
+    public function read_all($table, $id)
     {
-        $sql = "SELECT * FROM $table WHERE $col=?";
+        $sql = "SELECT * FROM $table WHERE id=?";
         $execute_sql = $this->bdd->prepare($sql);
-        $execute_sql->bindParam('?', $col, PDO::PARAM_INT);
-        $execute_sql->execute();
+        $execute_sql->execute($id);
         $result = $execute_sql->fetchAll(PDO::FETCH_ASSOC);
         foreach ($result as $value) {
             return $value;
@@ -55,22 +68,36 @@ class ORM
         $execute_sql->closeCursor();
     }
 
-    public function update($table, $col, $value_col)
+    public function update($table, $id, $fields)
     {
-        $sql = "UPDATE  $table SET $col = ? WHERE $value_col=?";
+        //$id = 2;
+        foreach($fields as $key => $value)
+        {
+        $sql = "UPDATE $table SET $key = '$value' WHERE id=$id";
         $execute_sql = $this->bdd->prepare($sql);
-        $execute_sql->bindParam('?', $value_col, PDO::PARAM_STR);
-        $execute_sql->bindParam('?', $col, PDO::PARAM_STR);
+        $execute_sql->execute();
+        $execute_sql->closeCursor();
+        }
+
+    }
+
+    public function delete($table, $id)
+    {
+        $sql = "DELETE FROM $table WHERE id=$id";
+        $execute_sql = $this->bdd->prepare($sql);
         $execute_sql->execute();
         $execute_sql->closeCursor();
     }
 
-    public function delete($table, $col)
+    public function find($table, $params = array('WHERE' => '1', 'ORDER BY' => 'id ASC', 'LIMIT' => ''))
     {
-        $sql = "DELETE FROM $table WHERE $col = ?";
-        $execute_sql = $this->bdd->preppre($sql);
-        $execute_sql->bindParam('?', $col, PDO::PARAM_INT);
-        $sql->execute();
-        $execute_sql->closeCursor();
+        $sql = "SELECT * FROM $table";
+
+        foreach($params as $key => $value)
+        {
+            $sql = $sql. ' ' .$key. ' '.$value;
+        }
+         //echo $sql;
+
     }
 }
