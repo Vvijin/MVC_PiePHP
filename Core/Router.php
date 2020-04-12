@@ -8,30 +8,25 @@ class Router
     {
         self::$routes[$url] = $route;
     }
+
+
     public static function get($url)
     {
-        if (isset(self::$routes[$url])) {
-            return self::$routes[$url];
+        $array = [];
+        foreach(self::$routes as $key => $value){
+            $r = "/{([^}]+)}/";
+            // var_dump($key, $value);
         }
-        else {
-            return null;
+        foreach($array as $key => $value)
+        {
+
+        }
+
+        if (isset(self::$routes[$url])) 
+        {
+            return self::$routes[$url];
+
         }
     }
 }
 
-// class Router
-// {
-//     private static $routes;
-    
-//     public static function connect($url, $route)
-//     {
-//         echo "Connect $url <br />";
-//         self::$routes[$url] = $route;
-//     }
-
-//     public static function get($url)
-//     {
-//         return array_key_exists($url, self::$routes) ? self::$routes[$url]: null;
-//     }
-
-//  }

@@ -1,14 +1,5 @@
 <?php
 
-// function loader($class)
-// {
-//     $class = str_replace("\\", DIRECTORY_SEPARATOR, $class);
-//     require $class .'.php';
-
-// }
-
-// spl_autoload_register("loader");
-
 spl_autoload_register(function ($class) {
     
     $path_core = "./Core/";
@@ -37,10 +28,6 @@ spl_autoload_register(function ($class) {
     if (file_exists($path_srcmodel . $file)) {
         require $path_srcmodel . $file;
     }
-    // else {
-    //     require 'src/Flash/error.php';
-    //     $flash = new Error();
-    //     return false;
-    // }
+
     
 });

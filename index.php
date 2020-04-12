@@ -15,7 +15,7 @@
 <!DOCTYPE html>
 
 <html> 
-<head> <title>WESH</title>
+<head> <title>Welcome</title>
 </head>
 
 <body>

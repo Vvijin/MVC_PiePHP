@@ -1,27 +1,35 @@
 <?php
 
-// class UserModel extends Entity
-// {
-//     private $email;
-//     private $password;
-
-//     public function __construct($email, $password)
-//     {
-//         $this->email = $email;
-//         $this->password = $password;
-//     }
-
-//     public function save()
-//     {
-//         $sql = $this->bdd->prepare('INSERT INTO users (email, password) VALUES (?, ?)');
-//         $sql->execute([$this->email, $this->password]);
-//     }
-// }
-
-// $user = new UserModel();
-
-class UserModel extends Entity
+ class UserModel extends Entity
 {
+    public $email;
+    public $password;
+    public $relations= [
+        'has_many' => ['table'=>'article','key'=>'user_id'],
+        'has_one' => ['table' => 'promo','key'=>'promo_id'],
+        'many_to_many' => ['table1' => 'user','table2' => 'food']
+    ];
+
+
+    public function checkmail($email) 
+    {
+        $bdd= new PDO('mysql:host=localhost;dbname=mvc_piephp;charset=utf8', 'root', '');
     
+        $execute = $bdd->prepare("SELECT email FROM users WHERE email = :email");
+        $execute->bindParam(':email', $email, PDO::PARAM_STR);
+        $execute->execute();
+    
+        if ($execute->rowCount() == 1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+
+
+
+
 }
+
 
